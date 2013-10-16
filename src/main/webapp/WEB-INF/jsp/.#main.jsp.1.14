@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>好乐贷</title>
+<link href="${ pageContext.request.contextPath }/css/base.css" type="text/css" rel="stylesheet">
+<link href="${ pageContext.request.contextPath }/css/link.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript" src="${ pageContext.request.contextPath }/js/common/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/js/common/backtop.js"></script>
+</head>
+<body>
+<!--主体 开始--> 
+<!--头部 开始-->
+<div class="by_bg">
+  <div class="wap head01 por">
+    <h1 class="logo"><a href="#">上海贷款</a></h1>
+    <div class="city"><span class="city_span" id="choosecity">${cityName}</span> <span class="city_span2">【<a href="${pageContext.request.contextPath}/district/showCitys">切换城市▼</a><span id="thiscity"></span>】</span> </div>
+    <p class="p_01"></p>
+    <!--搜索框开始-->
+    <form onsubmit="return searchCheck();" method="post" action="#" name="searchForm" id="searchForm" target="_blank">
+      <div class="m_search"> 
+        <input id="money" class="input_01" type="text" value="贷款金额" style=" color:#b1b1b1" name="money" onkeyup="value=value.replace(/[^0-9^.]/g,&#39;&#39;);" onblur="if(this.value==&#39;&#39;) {this.value=&#39;贷款金额&#39;;this.style.color=&#39;#ccc&#39;;}else{}this.className=&#39;input_01&#39;" onfocus="if(this.value==&#39;贷款金额&#39;) {this.value=&#39;&#39;;};this.className=&#39;input_01&#39;;this.style.color=&#39;#333&#39;;" onmouseout="this.className=&#39;input_01&#39;" onmouseover="this.className=&#39;input_01&#39;">
+        <input type="hidden" id="loanType" name="loanType" value="xinyong">
+        <div class="seChange" id="selectChange">
+          <div class="sear_ti">信用贷款</div>
+          <ul class="sear_ul tc_style3" style="display: none;">
+            <li><a name="xinyong" href="javascript:;">信用贷款</a></li>
+            <li><a name="fangchan" href="javascript:;">房产贷款</a></li>
+            <li><a name="qiche" href="javascript:;">汽车贷款</a></li>
+            <li><a name="qiye" href="javascript:;">企业贷款</a></li>
+            <li><a name="yingji" href="javascript:;">应急贷款</a></li>
+          </ul>
+        </div>
+        <input type="submit" value="" name="" class="input_02">
+      </div>
+    </form>
+    <!--搜索框结束-->
+    <div class="l_nav wap">
+      <div class="subnav"> <a href="${pageContext.request.contextPath}/register/showRegister" target="_blank">注册</a><a href="javascript:;" onclick="loginBox()" id="login_botton"><span class="span01">▼</span>登录</a> </div>
+      <!--登陆弹出框开始-->
+      <div id="fast_login" style="display:none">
+        <form name="loginForm" id="loginForm" method="post" action="${pageContext.request.contextPath}/login/submitLogin" onsubmit="return checkFastLogin(this)">
+          <input type="hidden" name="fromUrl" value="index.html">
+          <p class="login_p01">登陆账号：&nbsp;&nbsp;
+            <input id="fast_account" class="fast_input-on tc_style14" type="text" value="" name="mobile" onblur="if(this.value==&#39;&#39;) {this.value=&#39;用户名/手机号/电子邮箱&#39;;this.style.color=&#39;#ccc&#39;;}else{}this.className=&#39;fast_input-on&#39;" onfocus="if(this.value==&#39;用户名/手机号/电子邮箱&#39;) {this.value=&#39;&#39;;};this.className=&#39;fast_input-off&#39;;this.style.color=&#39;#333&#39;;" onmouseout="this.className=&#39;fast_input-on&#39;" onmouseover="this.className=&#39;fast_input-off&#39;" onkeydown="if(event.keyCode==32){return false;}">
+          </p>
+          <p class="login_p02">登陆密码：&nbsp;&nbsp;
+            <input id="fast_password" class="fast_input-on tc_style15" type="password" maxlength="15" name="password" onblur="this.className=&#39;fast_input-on&#39;" onfocus="this.className=&#39;fast_input-off&#39;" onmouseout="this.className=&#39;fast_input-on&#39;" onmouseover="this.className=&#39;fast_input-off&#39;" onkeydown="if(event.keyCode==32){return false;}">
+          </p>
+          <p class="login_p03"> <span class="fast_text">
+            <label>
+              <input type="checkbox" checked="checked" value="1" name="autoLogin">
+              &nbsp;记住我 </label>
+            <a class="blue" href="lostPassword.html">忘记密码？</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="fast_box" type="submit" value="登 录" name="fast_submit">
+            </span> </p>
+        </form>
+      </div>
+      <!--登陆弹出框结束-->
+      <ul>
+        <li><a href="#" onclick="$('#test').load('${pageContext.request.contextPath}/home/show')" class="current" style=" border-left:1px solid #999;border-right:1px solid #999;">&nbsp;&nbsp;首 页&nbsp;</a></li>
+        <li><a href="#" onclick="$('#test').load('${pageContext.request.contextPath}/agency/findAgencyLender')" style=" border-right:1px solid #999;">找机构</a></li>
+        <li><a href="#" onclick="$('#test').load('${pageContext.request.contextPath}/consultant/findConsultant')" style=" border-right:1px solid #999;">找顾问</a></li>
+        <li><a href="#" onclick="$('#test').load('${pageContext.request.contextPath}/findForLoans/findLoans')" rel="nofollow" style=" border-right:1px solid #999;">找贷款</a></li>
+        <li><a href="#" onclick="$('#test').load('${pageContext.request.contextPath}/borrow/findBorrow')" style=" border-right:1px solid #999;">找借款</a></li>
+        <li><a href="#" onclick="$('#test').load('${pageContext.request.contextPath}/successStories/findSuccessStories')" style=" border-right:1px solid #999;">成功案例</a></li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <!--顶部top结束--> 
+  <script type="text/javascript" src="${ pageContext.request.contextPath }/js/common/headertop.js"></script> 
+  <script type="text/javascript">
+var loginObj = document.getElementById('fast_login');
+var lb = 2;
+var login_botton = document.getElementById('login_botton');
+
+$(function(){
+	$('#selectChange').mouseover(function(){
+		$('.sear_ul').show();
+	});
+	$('#selectChange').mouseout(function(){
+		$('.sear_ul').hide();
+	});
+
+	$('.sear_ul a').click(function(){
+		sear_ulClick(this);
+	});
+});
+obj = $(".sear_ul a[name='xinyong']");
+sear_ulClick(obj);
+</script> <!--头部 结束--> 
+</div>
+<div id="test" class="wap mar_t_header"></div>
+</body>
+</html>
